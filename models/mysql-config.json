@@ -1,0 +1,7 @@
+{
+    "connectionLimit" : 500,
+    "host"            : "localhost",
+    "user"            : "root",
+    "password"        : "",
+    "database"        : "badminton"
+  }

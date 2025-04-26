@@ -1,0 +1,350 @@
+{
+  "openapi":"3.0.0",
+  "info": {
+    "title": "",
+    "description": "",
+    "version": "1.0"
+  },
+  "produces": ["application/json"],
+  "servers": [
+    {
+      "url": "https://dev-node-cardiacmd.enterpriseapplicationdevelopers.com:3027/",
+      "description": "Development Environment"
+    }
+  ],
+  "paths": {
+    "/api/v1/login": {
+      "post": {
+        "tags": ["User Login"],
+        "description": "Login API for Admin and Doctor",
+        "consumes":["application/json"],
+        "requestBody":{
+            "required":true,
+            "description":"Encrypted Request",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/definitions/userLoginDataEncrypted"
+                }
+              }
+            }  
+        },
+        "parameters":[
+          {
+              "in":"path",
+              "name":"body",
+              "description":"Non Encrypted Requests",
+              "required":true,
+              "schema":{
+                "$ref":"#/definitions/userLoginData"
+              }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description":"Decrypted API Responses",
+            "content":{
+              "application/json":{
+                "description":"",
+                "schema":{
+                  "type":"object",
+                  "properties":{
+                    "data":{
+                      "type":"string",
+                      "example":"WW1ptheTAJxuEKtGAF7yEvC2JMLzrfInaBfRAI4SzwZEBnunQZJ+94Gn5gk/nt6D+3FBZ/LwgqY6KMzgFdfcm4CTGrby8if4S/eA7gl8+ZydI/rWSTfo5apfSdaoNT06bc233/a9uVfwRMQQag25k2Rnq7Uq+RLauiPwVsodozgjRlpnf3hrrqMZIqO6jy69Bg7ics1OfIq/6jkRrwN/ZsOd9DVhLrB+DNb92XDOjWRHUAe5pNWTYhwWFBgFt+xOtN85pAZtpk5kAU7CS+wxvVRVQLUAbEUB9yzjlNWrSeC8elAjqMcvc+8YokGZJ2IJiM46BpLa4OeMApXPFvE/n+HotBoNlGbONvEAEjaS6dQlTVzzCEpJ0g5qAO0ixjr7OhAQUuZoqeYtOkBCd9Xd87V98YkL9ej5CZR48Bczyn2nd7cZEEE3YULEUQ6MLpAQ6WXjVS2UlmSD4SaznsxdnF8j2aP1BwIr4taxr/muQ/h/FsaqoIAl8h7CTkFcmZB1C4n6Ckry+oV4l40laHzxdQ=="
+                    }
+                  }
+                },
+                "example":{
+                    "success":true,
+                    "statuscode":200,
+                    "msg":"User Logged in successfully",
+                    "data":{
+                      "name": "rajesh",
+                      "email_address": "rajeshkannan.c@innoppl.com",
+                      "role_id": 2,
+                      "country_code": "91",
+                      "mobile_number": "9789432578",
+                      "uuid": "test",
+                      "status": 1,
+                      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoicmFqZXNoIiwicm9sZV9pZCI6MiwidXVpZCI6InRlc3QiLCJpYXQiOjE2MjczNzMwMTB9.FiWrmU_Tc0b8lpqHGYHm3H4kdMobQICM8oH0wScpDqU"
+                    } 
+                }  
+              }
+            }
+          },
+          "422":{
+            "description":"Decrypted Error input validation fails",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties":{
+                    "data":{
+                      "type":"string",
+                      "example":"ZUOaQA9zYxDHOOzdxORbkd+Rad5gUCU4W1Eoc0xMi8rI2bqdbHK/cBBl5XIXj0N3GGKramIopuBCqwXbpGjUYQ=="
+                    }
+                  }
+                },
+                "example":{
+                  "success":false,
+                  "statuscode":422,
+                  "msg":"Invalid Password"
+                }
+              }
+            }  
+          },
+
+          "503":{
+            "description":"Server under maintaince",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties":{
+                    "data":{
+                      "type":"string",
+                      "example":"ZUOaQA9zYxDHOOzdxORbkd+Rad5gUCU4W1Eoc0xMi8rI2bqdbHK/cBBl5XIXj0N3GGKramIopuBCqwXbpGjUYQ=="
+                    }
+                  }
+                },
+                "example":{
+                  "success":false,
+                  "statuscode":503,
+                  "msg":"Server under maintaince"
+                }
+              }
+            }
+          }
+        }
+        }   
+      },
+      "/api/v1/register": {
+        "post": {
+          "tags": ["Doctor Register"],
+          "description": "Doctor Register API",
+          "consumes":["application/json"],
+          "requestBody":{
+              "required":true,
+              "description":"Encrypted Request",
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "$ref":"#/definitions/userRegisterDataEncrypted"
+                  }
+                }
+              }  
+          },
+          "parameters":[
+            {
+                "in":"path",
+                "name":"body",
+                "description":"Non Encrypted Requests",
+                "required":true,
+                "schema":{
+                  "$ref":"#/definitions/userRegisterData"
+                }
+            }
+          ],
+          "responses":{
+            "200":{
+              "description":"Decrypted API Responses",
+              "content":{
+                "application/json":{
+                  "description":"",
+                  "schema":{
+                    "type":"object",
+                    "properties":{
+                      "data":{
+                        "type":"string",
+                        "example":"nzw1Mp0ow1BbjjySdfMJjIaHoTXDButtZU3P1Ar0BgQ08jvbaKT3BmsVZtxGkZ2+lAU7RtCXoYitU66YfUNlxDEDHI1zSV2C+HpOuqqln1Y/kNtT0VflnWXkz14zBWvhunmMTOYev8gmzwpR/29kNzOOr6tOjYas0ukQRNlKWswuQsqLBFmnIFShwjdeNodS4ibh8VfhxaSs0fQRv9k4CkG6BoDSre+wLQg1iUKeV5U="
+                      }
+                    }
+                  },
+                  "example":{
+                      "success":true,
+                      "statuscode":200,
+                      "msg":"Doctor Registered successfully",
+                      "data":{
+                        "name": "rajesh",
+                        "email_address": "rajeshkannan.c@innoppl.com",
+                        "role_id": 2,
+                        "country_code": "+91",
+                        "mobile_number": "9789432578",
+                        "uuid": "test",
+                        "status": 2,
+                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoicmFqZXNoIiwicm9sZV9pZCI6MiwidXVpZCI6InRlc3QiLCJpYXQiOjE2MjczNzMwMTB9.FiWrmU_Tc0b8lpqHGYHm3H4kdMobQICM8oH0wScpDqU"
+                      } 
+                  }  
+                }
+              }
+            },
+            "422":{
+              "description":"Decrypted Error input validation fails",
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "type":"object",
+                    "properties":{
+                      "data":{
+                        "type":"string",
+                        "example":"ZUOaQA9zYxDHOOzdxORbkd+Rad5gUCU4W1Eoc0xMi8rI2bqdbHK/cBBl5XIXj0N3GGKramIopuBCqwXbpGjUYQ=="
+                      }
+                    }
+                  },
+                  "example":{
+                    "success":false,
+                    "statuscode":422,
+                    "msg":"Invalid Password"
+                  }
+                }
+              }  
+            },
+  
+            "503":{
+              "description":"Server under maintaince",
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "type":"object",
+                    "properties":{
+                      "data":{
+                        "type":"string",
+                        "example":"ZUOaQA9zYxDHOOzdxORbkd+Rad5gUCU4W1Eoc0xMi8rI2bqdbHK/cBBl5XIXj0N3GGKramIopuBCqwXbpGjUYQ=="
+                      }
+                    }
+                  },
+                  "example":{
+                    "success":false,
+                    "statuscode":503,
+                    "msg":"Server under maintaince"
+                  }
+                }
+              }
+            }
+          }
+          }   
+        }    
+    },   
+  "components":{
+      "securitySchemes":{
+        "bearerAuth":{
+          "type": "http",
+          "scheme": "bearer",
+          "bearerFormat": "JWT"
+        }
+      }
+  },               
+  "definitions":{
+    "data":{
+        "type": "object",
+        "properties":{
+            "measurementType":{
+              "type": "string",
+              "example": "spo2"
+            }, 
+            "units":{
+              "type": "string",
+              "example": "%"
+            },  
+            "value":{
+              "type": "number",
+              "example": "98"
+            }  
+        }
+    },
+    "userLoginData":{
+      "type":"object",
+      "required":true,
+      "properties":{
+        "email_address":{
+          "type":"string",
+          "example":"rajeshkannan.c@innoppl.com"
+        },
+        "password":{
+          "type":"string",
+          "example":"CardiacMD@2021"
+        }
+      }
+   },
+    "userLoginDataEncrypted":{
+       "type":"object",
+       "required":true,
+       "properties":{
+         "data":{
+           "type":"string",
+           "example":"WLJ5jB4Xb1MRDIid58LzuWnweQM0i6lE6QdEizQ/jzg+FolBFleTYGVmg5M7LGiVDRX8OcDVwUvQj22p1rvj3VAVRIyaSoWS2TP7ADrN9/U="
+         }
+       }
+    },
+    "userRegisterData":{
+      "type":"object",
+      "required":true,
+      "properties":{
+        "name":{
+          "type":"string",
+          "example":"Rajeshkannan"
+        },
+        "country_code":{
+          "type":"string",
+          "example":"+91"
+        },
+        "mobile_number":{
+          "type":"number",
+          "example":"9893872232"
+        },
+        "email_address":{
+          "type":"string",
+          "example":"rajeshkannan.c@innoppl.com"
+        },
+        "password":{
+          "type":"string",
+          "example":"CardiacMD@2021"
+        },
+        "account_number":{
+          "type":"string",
+          "example":"1234335"
+        }
+      }
+   },
+    "userRegisterDataEncrypted":{
+       "type":"object",
+       "required":true,
+       "properties":{
+         "data":{
+           "type":"string",
+           "example":"nzw1Mp0ow1BbjjySdfMJjIaHoTXDButtZU3P1Ar0BgQ08jvbaKT3BmsVZtxGkZ2+lAU7RtCXoYitU66YfUNlxDEDHI1zSV2C+HpOuqqln1Y/kNtT0VflnWXkz14zBWvhunmMTOYev8gmzwpR/29kNzOOr6tOjYas0ukQRNlKWswuQsqLBFmnIFShwjdeNodS4ibh8VfhxaSs0fQRv9k4CkG6BoDSre+wLQg1iUKeV5U="
+         }
+       }
+    },
+    "deviceData":{
+        "type": "object",
+        "required":true,
+        "properties":{
+            "hubSerialNumber":{
+                "type": "string",
+                "example": "33816810"
+            },  
+           "sensorBTAddress":{
+                "type": "string",
+                "example": "5CF821DECFD4"
+           },   
+          "sensorType":{
+              "type": "string",
+              "example": "oxy"
+          },  
+          "timestamp":{
+            "type": "string",
+            "example": "1614097142216"
+          },
+          "data":{
+            "type": "array",
+            "items":{
+              "$ref": "#/definitions/data"       
+            }   
+
+          }
+        }
+    }
+  }
+}  
