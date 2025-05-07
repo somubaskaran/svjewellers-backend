@@ -23,7 +23,7 @@ ordermodel.addOrder = (req,res,callback) => {
                 database: mysqlconstants.MYSQL_DATABASE,
             });
             var orderData = req.body.data;
-                var createOrderQuery = "INSERT INTO `order`( `customer_name`, `customer_email`, `customer_number`, `customer_city`, `item_name`, `item_weight`, `item_purity`, `metal_type`, `due_date`, `description`) VALUES ('"+orderData.customerName+"','"+orderData.customerEmail+"','"+orderData.customerPhone+"','"+orderData.customerCity+"','"+orderData.itemName+"','"+orderData.itemWeight+"','"+orderData.itemPurity+"','"+orderData.metalType+"','"+orderData.dueDate+"','"+orderData.description+"')";
+                var createOrderQuery = "INSERT INTO `order`( `customer_name`, `customer_email`, `customer_number`, `customer_city`, `item_name`, `item_weight`, `item_purity`, `metal_type`, `due_date`, `description`, `status`) VALUES ('"+orderData.customerName+"','"+orderData.customerEmail+"','"+orderData.customerPhone+"','"+orderData.customerCity+"','"+orderData.itemName+"','"+orderData.itemWeight+"','"+orderData.itemPurity+"','"+orderData.metalType+"','"+orderData.dueDate+"','"+orderData.description+"',0)";
 
                     //var query = 'select * from matches where matches.tour_id = '+tournmentId+ ' and matches.round_id = '+temp;
                     
